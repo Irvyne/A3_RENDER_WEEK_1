@@ -6,11 +6,12 @@
 
 require '_header.php';
 
-$articleManager = new ArticleManager($pdo);
+$repo = $entityManager->getRepository('Article');
+
 if ($userSession->isConnected() && $userSession->hasRole('ROLE_ADMIN'))
-    $articles = $articleManager->findAll();
+    $articles = $repo->findAll();
 else
-    $articles = $articleManager->findAllByEnabled(true);
+    $articles = $repo->findByEnabled(true);
 
 include 'template/_header.php';
 include 'template/list-articles.php';

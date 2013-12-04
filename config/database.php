@@ -5,10 +5,10 @@
  */
 
 return array(
-    'driver'    => 'mysql',
+    'driver'    => 'pdo_mysql',
     'host'      => 'localhost',
-    'dbname'    => 'a3_render_week1',
-    'username'  => 'root',
+    'dbname'    => 'a3_doctrine_blog',
+    'user'      => 'root',
     'password'  => 'root',
     'port'      => 8889, // MAC = 8889 - WINDOWS = 3306
 );

@@ -1,0 +1,15 @@
+{
+    "require": {
+        "doctrine/orm": "2.4.*",
+        "symfony/yaml": "~2.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "Class/",
+            "": "Entity/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}

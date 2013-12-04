@@ -30,7 +30,7 @@ if (isset($_POST['submit']))
         );
 
     if (count($messages) == 0) {
-        $userManager = new UserManager($pdo);
+        $repo = $entityManager->getRepository('User');
         if ($user = $userManager->signIn($username, $password)) {
             $userSession->register($user);
             $messages[] = array(

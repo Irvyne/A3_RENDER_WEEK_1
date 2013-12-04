@@ -4,7 +4,7 @@
  * This code is under the MIT License (https://github.com/Irvyne/license/blob/master/MIT.md)
  */
 
-require 'autoload.php';
+require 'Class/UserSession.php';
 
 $userSession = new UserSession();
 $userSession->destroy();

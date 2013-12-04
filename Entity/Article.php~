@@ -1,0 +1,58 @@
+<?php
+/**
+ * Created by Thibaud BARDIN (Irvyne)
+ * This code is under the MIT License (https://github.com/Irvyne/license/blob/master/MIT.md)
+ */
+
+/**
+ * Class Article
+ *
+ * @Entity
+ * @Table(name="article")
+ */
+class Article
+{
+    /**
+     * @var int
+     *
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @Column(type="string", length=255)
+     */
+    protected $title;
+
+    /**
+     * @var string
+     *
+     * @Column(type="text")
+     */
+    protected $content;
+
+    /**
+     * @var User
+     *
+     * @ManyToOne(targetEntity="User")
+     */
+    protected $author;
+
+    /**
+     * @var DateTime
+     *
+     * @Column(type="datetime")
+     */
+    protected $date;
+
+    /**
+     * @var boolean
+     *
+     * @Column(type="boolean")
+     */
+    protected $enabled;
+} 

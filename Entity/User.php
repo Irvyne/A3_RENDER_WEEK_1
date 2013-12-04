@@ -4,46 +4,48 @@
  * This code is under the MIT License (https://github.com/Irvyne/license/blob/master/MIT.md)
  */
 
-class User extends BaseHydrate
+/**
+ * Class User
+ *
+ * @Entity(repositoryClass="UserRepository")
+ * @Table(name="user")
+ */
+class User
 {
     /**
      * @var int
+     *
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
+     *
+     * @Column(type="string", length=255)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
+     *
+     * @Column(type="string", length=255)
      */
-    private $password;
+    protected $password;
 
     /**
      * @var string
+     *
+     * @Column(type="string", length=255)
      */
-    private $role;
+    protected $role;
 
     /**
-     * @param array $data
-     */
-    public function __construct(array $data = null)
-    {
-        parent::__construct($data);
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = (int) $id;
-    }
-
-    /**
-     * @return int
+     * Get id
+     *
+     * @return integer 
      */
     public function getId()
     {
@@ -51,19 +53,22 @@ class User extends BaseHydrate
     }
 
     /**
-     * @param $name
-     * @throws Exception
+     * Set name
+     *
+     * @param string $name
+     * @return User
      */
     public function setName($name)
     {
-        if (is_string($name))
-            $this->name = $name;
-        else
-            throw new Exception('$name must be a string!');
+        $this->name = $name;
+
+        return $this;
     }
 
     /**
-     * @return string
+     * Get name
+     *
+     * @return string 
      */
     public function getName()
     {
@@ -71,19 +76,22 @@ class User extends BaseHydrate
     }
 
     /**
-     * @param $password
-     * @throws Exception
+     * Set password
+     *
+     * @param string $password
+     * @return User
      */
     public function setPassword($password)
     {
-        if (is_string($password))
-            $this->password = self::isPasswordHashed($password) ? $password : self::hashPassword($password);
-        else
-            throw new Exception('$password must be a string!');
+        $this->password = $password;
+
+        return $this;
     }
 
     /**
-     * @return string
+     * Get password
+     *
+     * @return string 
      */
     public function getPassword()
     {
@@ -91,43 +99,25 @@ class User extends BaseHydrate
     }
 
     /**
-     * @param $role
-     * @throws Exception
+     * Set role
+     *
+     * @param string $role
+     * @return User
      */
     public function setRole($role)
     {
-        if (is_string($role))
-            $this->role = $role;
-        else
-            throw new Exception('$role must be a string!');
+        $this->role = $role;
+
+        return $this;
     }
 
     /**
-     * @return string
+     * Get role
+     *
+     * @return string 
      */
     public function getRole()
     {
         return $this->role;
     }
-
-    /**
-     * @param string $password
-     * @return string
-     */
-    public static function hashPassword($password)
-    {
-        return sha1($password);
-    }
-
-    /**
-     * @param string $password
-     * @return bool
-     */
-    public static function isPasswordHashed($password)
-    {
-        if (strlen($password) == 40)
-            return true;
-        else
-            return false;
-    }
-} 
+}

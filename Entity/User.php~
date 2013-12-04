@@ -1,0 +1,44 @@
+<?php
+/**
+ * Created by Thibaud BARDIN (Irvyne)
+ * This code is under the MIT License (https://github.com/Irvyne/license/blob/master/MIT.md)
+ */
+
+/**
+ * Class User
+ *
+ * @Entity
+ * @Table(name="user")
+ */
+class User
+{
+    /**
+     * @var int
+     *
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @Column(type="string", length=255)
+     */
+    protected $name;
+
+    /**
+     * @var string
+     *
+     * @Column(type="string", length=255)
+     */
+    protected $password;
+
+    /**
+     * @var string
+     *
+     * @Column(type="string", length=255)
+     */
+    protected $role;
+} 

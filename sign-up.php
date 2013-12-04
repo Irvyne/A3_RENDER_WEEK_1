@@ -30,13 +30,15 @@ if (isset($_POST['submit']))
         );
 
     if (count($messages) == 0) {
-        $userManager = new UserManager($pdo);
         $user = new User(array(
             'name'      => $username,
             'password'  => $password,
             'role'      => 'ROLE_USER',
         ));
-        $user = $userManager->add($user);
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
         $userSession->register($user);
         $messages[] = array(
             'type'  => 'success',
@@ -53,8 +55,6 @@ if (!empty($headerRedirect)) {
     header('Location: index.php');
     exit;
 }
-$userManager = new UserManager($pdo);
-$users = $userManager->findAll();
 
 include 'template/_header.php';
 include 'template/sign-up.php';

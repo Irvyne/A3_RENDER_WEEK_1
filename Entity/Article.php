@@ -4,133 +4,62 @@
  * This code is under the MIT License (https://github.com/Irvyne/license/blob/master/MIT.md)
  */
 
-class Article extends BaseHydrate
+/**
+ * Class Article
+ *
+ * @Entity
+ * @Table(name="article")
+ */
+class Article
 {
     /**
      * @var int
+     *
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
+     *
+     * @Column(type="string", length=255)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
+     *
+     * @Column(type="text")
      */
-    private $content;
+    protected $content;
 
     /**
-     * @var int
+     * @var User
+     *
+     * @ManyToOne(targetEntity="User")
      */
-    private $author;
+    protected $author;
 
     /**
      * @var DateTime
+     *
+     * @Column(type="datetime")
      */
-    private $date;
+    protected $date;
 
     /**
      * @var boolean
+     *
+     * @Column(type="boolean")
      */
-    private $enabled;
+    protected $enabled;
 
     /**
-     * @param array $data
-     */
-    public function __construct(array $data = null)
-    {
-        parent::__construct($data);
-    }
-
-    /**
-     * @param int $author
-     */
-    public function setAuthor($author)
-    {
-        $this->author = (int) $author;
-    }
-
-    /**
-     * @return int
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * @param $content
-     * @throws Exception
-     */
-    public function setContent($content)
-    {
-        if (is_string($content))
-            $this->content = $content;
-        else
-            throw new Exception('$content must be a string!');
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param \DateTime|string $argument
-     */
-    public function setDate($argument)
-    {
-        if ($argument instanceof \DateTime)
-            $this->date = $argument;
-        else
-            $this->date = new DateTime($argument);
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
-     * @param boolean|int|string $enabled
-     * @throws Exception
-     */
-    public function setEnabled($enabled)
-    {
-        if (is_bool($enabled))
-            $this->enabled = $enabled;
-        elseif (is_int($enabled) || is_string($enabled))
-            $this->enabled = (bool) $enabled;
-        else
-            throw new Exception('$enabled must be a boolean, an integer or a string!');
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = (int) $id;
-    }
-
-    /**
-     * @return int
+     * Get id
+     *
+     * @return integer 
      */
     public function getId()
     {
@@ -138,22 +67,117 @@ class Article extends BaseHydrate
     }
 
     /**
-     * @param $title
-     * @throws Exception
+     * Set title
+     *
+     * @param string $title
+     * @return Article
      */
     public function setTitle($title)
     {
-        if (is_string($title))
-            $this->title = $title;
-        else
-            throw new Exception('$title must be a string!');
+        $this->title = $title;
+
+        return $this;
     }
 
     /**
-     * @return string
+     * Get title
+     *
+     * @return string 
      */
     public function getTitle()
     {
         return $this->title;
     }
-} 
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Article
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Article
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     * @return Article
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean 
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \User $author
+     * @return Article
+     */
+    public function setAuthor(\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \User 
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+}

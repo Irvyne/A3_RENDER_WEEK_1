@@ -4,82 +4,71 @@
  * This code is under the MIT License (https://github.com/Irvyne/license/blob/master/MIT.md)
  */
 
-class Comment extends BaseHydrate
+/**
+ * Class Comment
+ *
+ * @Entity
+ * @Table(name="comment")
+ */
+class Comment
 {
     /**
      * @var int
+     *
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
+     *
+     * @Column(type="text")
      */
-    private $content;
+    protected $content;
 
     /**
-     * @var int
+     * @var User
+     *
+     * @ManyToOne(targetEntity="User")
      */
-    private $author;
+    protected $author;
 
     /**
-     * @var int
+     * @var Article
+     *
+     * @ManyToOne(targetEntity="Article")
      */
-    private $article;
+    protected $article;
 
     /**
-     * @param array $data
+     * Get id
+     *
+     * @return integer 
      */
-    public function __construct(array $data = null)
+    public function getId()
     {
-        parent::__construct($data);
+        return $this->id;
     }
 
     /**
-     * @param int $article
-     */
-    public function setArticle($article)
-    {
-        $this->article = (int) $article;
-    }
-
-    /**
-     * @return int
-     */
-    public function getArticle()
-    {
-        return $this->article;
-    }
-
-    /**
-     * @param int $author
-     */
-    public function setAuthor($author)
-    {
-        $this->author = (int) $author;
-    }
-
-    /**
-     * @return int
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * @param $content
-     * @throws Exception
+     * Set content
+     *
+     * @param string $content
+     * @return Comment
      */
     public function setContent($content)
     {
-        if (is_string($content))
-            $this->content = $content;
-        else
-            throw new Exception('$content must be a string!');
+        $this->content = $content;
+
+        return $this;
     }
 
     /**
-     * @return string
+     * Get content
+     *
+     * @return string 
      */
     public function getContent()
     {
@@ -87,20 +76,48 @@ class Comment extends BaseHydrate
     }
 
     /**
-     * @param int $id
+     * Set author
+     *
+     * @param \User $author
+     * @return Comment
      */
-    public function setId($id)
+    public function setAuthor(\User $author = null)
     {
-        $this->id =  (int) $id;
+        $this->author = $author;
+
+        return $this;
     }
 
     /**
-     * @return int
+     * Get author
+     *
+     * @return \User 
      */
-    public function getId()
+    public function getAuthor()
     {
-        return $this->id;
+        return $this->author;
     }
 
+    /**
+     * Set article
+     *
+     * @param \Article $article
+     * @return Comment
+     */
+    public function setArticle(\Article $article = null)
+    {
+        $this->article = $article;
 
-} 
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Article 
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+}

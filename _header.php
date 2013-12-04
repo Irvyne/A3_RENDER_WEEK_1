@@ -4,14 +4,10 @@
  * This code is under the MIT License (https://github.com/Irvyne/license/blob/master/MIT.md)
  */
 
-require 'autoload.php';
-$config = require 'config/database.php';
-$userSession = new UserSession();
+require 'vendor/autoload.php';
+$entityManager = require 'bootstrap.php';
 
-try {
-    $dsn = $config['driver'].':dbname='.$config['dbname'].';host='.$config['host'].';port='.$config['port'].';charset=utf8';
-    $pdo = new \PDO($dsn, $config['username'], $config['password']);
-} catch (\PDOException $exception) {
-    //mail('monadresse@gmail.com', 'Problème de Connexion BDD', $exception->getCode().' '.$exception->getMessage().' '.$exception->getTraceAsString());
-    exit('BDD Error');
-}
+require 'Class/DateTimeFormat.php';
+require 'Class/UserSession.php';
+require 'Class/BaseHydrate.php';
+$userSession = new UserSession();
